@@ -1,0 +1,7 @@
+Flask==1.1.1
+flask_cors==3.0.8
+msgpack==1.0.0
+requests==2.24.0
+numpy==1.19.1
+git+git://github.com/schlegelp/pymaid@master
+
