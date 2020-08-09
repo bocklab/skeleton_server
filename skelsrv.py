@@ -65,7 +65,7 @@ def get_skeleton(catmaid, transform, skeleton):
         pymaid_instance = get_pymaid_instance(catmaid)
 
         # Get the neuron
-        neuron = pymaid.get_neuron(9464046, remote_instance=pymaid_instance)
+        neuron = pymaid.get_neuron(skeleton, remote_instance=pymaid_instance)
 
         if transform:
             # Map into FlyWire space
