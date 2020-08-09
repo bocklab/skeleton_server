@@ -33,6 +33,8 @@ def get_transform(transform_name):
 
 def encode_skeleton(edges, vertex_positions):
     # Based on neuroglancer.skeleton.Skeleton.encode
+    vertex_positions = np.array(vertex_positions, dtype='<f4')
+    edges = np.array(edges, dtype='<u4')
     result = io.BytesIO()
     result.write(struct.pack('<II', vertex_positions.shape[0], edges.shape[0] // 2))
     result.write(vertex_positions.tobytes())
@@ -44,19 +46,19 @@ def hello_world():
     return '<h1>TODO: API docs</h1>'
 
 
-@app.route('/catmaid/<string:catmaid>/info', defaults={'transform' : None})
-@app.route('/catmaid/<string:catmaid>/transform/<string:transform>/info')
-def datasource_info(catmaid, transform):
+@app.route('/catmaid/<string:catmaid>/skeleton/info', defaults={'transform' : None})
+@app.route('/catmaid/<string:catmaid>/transform/<string:transform>/skeleton/info')
+def datasource_skelinfo(catmaid, transform):
 
     info = {
         "@type" : "neuroglancer_skeletons",
-        "transform" : [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 ]
+        "transform" : [ 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 40, 0 ],
     }
     return jsonify(info)
 
 
-@app.route('/catmaid/<string:catmaid>/<int:skeleton>', defaults={'transform' : None})
-@app.route('/catmaid/<string:catmaid>/transform/<string:transform>/<int:skeleton>')
+@app.route('/catmaid/<string:catmaid>/skeleton/<int:skeleton>', defaults={'transform' : None})
+@app.route('/catmaid/<string:catmaid>/transform/skeleton/<string:transform>/<int:skeleton>')
 def get_skeleton(catmaid, transform, skeleton):
     try:
         # Get the pymaid object

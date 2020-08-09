@@ -17,7 +17,7 @@ TRANSFORM_SOURCES = {
     },
     'flywire_to_v14' : {
         'url' : 'https://spine.janelia.org/app/flyconv',
-        'transform' : 'flywire_v1_inverse',
+        'transform' : 'flywire_v1',
         'mip' : 4
     }
 }
