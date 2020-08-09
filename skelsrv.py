@@ -58,7 +58,7 @@ def datasource_skelinfo(catmaid, transform):
 
 
 @app.route('/catmaid/<string:catmaid>/skeleton/<int:skeleton>', defaults={'transform' : None})
-@app.route('/catmaid/<string:catmaid>/transform/skeleton/<string:transform>/<int:skeleton>')
+@app.route('/catmaid/<string:catmaid>/transform/<string:transform>/skeleton/<int:skeleton>')
 def get_skeleton(catmaid, transform, skeleton):
     try:
         # Get the pymaid object
